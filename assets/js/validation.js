@@ -81,9 +81,25 @@ if(subject.value === '' || subject.value == null)
     
     
 
-
-
-
-
-
 })
+
+
+
+function submitForm(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get form input values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+
+    // Construct the message
+    const whatsappMessage = `%0AName: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0ASubject: ${encodeURIComponent(subject)}%0AMessage: ${encodeURIComponent(message)}`;
+
+    // Replace 1234567890 with your WhatsApp number (including country code)
+    const whatsappURL = `https://wa.me/7907442683?text=${whatsappMessage}`;
+
+    // Redirect user to WhatsApp chat
+    window.open(whatsappURL, '_blank');
+  }
